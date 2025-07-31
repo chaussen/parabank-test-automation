@@ -73,3 +73,17 @@ src/
 - **API Tests**: Headless HTTP requests testing complete banking workflow
 - **UI Tests**: Browser-based testing of user interface and interactions
 - **Separated execution**: API and UI tests run independently for faster feedback
+
+## Jenkins Integration
+
+For local Jenkins pipeline setup:
+
+1. **Install Required Plugins**: NodeJS, HTML Publisher, Git, Pipeline
+2. **Configure Node.js**: Add NodeJS 18 in Global Tool Configuration
+3. **Create Pipeline Job**: Use "Pipeline script from SCM" with this repository
+4. **Auto-trigger Options**:
+   - SCM Polling: `H/2 * * * *` (checks every 2 minutes)
+   - GitHub Webhook: `http://jenkins-server:8080/github-webhook/`
+   - Scheduled: `0 2 * * *` (daily at 2 AM)
+
+The `Jenkinsfile` includes parallel execution of API/UI tests with HTML report publishing.
