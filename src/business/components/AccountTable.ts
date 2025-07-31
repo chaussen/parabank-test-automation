@@ -33,8 +33,8 @@ export class AccountTable extends BaseComponent {
         if (allHeaders.length === 0) {
             throw new Error("No headers found in the account table.");
         }
-        const actualHeader = allHeaders.find(h => h.trim().includes(header));
-        if (!actualHeader) {
+        const actualHeader = allHeaders.find(h => h.trim().toLowerCase().includes(header.toLowerCase()));
+        if (!actualHeader || actualHeader.trim() === '') {
             throw new Error(`Header "${header}" not found in the account table.`);
         }
         const headerIndex = allHeaders.indexOf(actualHeader);
